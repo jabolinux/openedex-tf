@@ -637,6 +637,4 @@ Opcional: dominio personalizado del CDN (`aliases`, `alias_zone_id`, `alias_name
 - Los módulos Terraform provienen de
   [open-craft/terraform-scripts](https://github.com/open-craft/terraform-scripts) © OpenCraft,
   bajo licencia **GPL-3.0** (ver [`LICENSE`](./LICENSE)).
-- El tutorial original en inglés está en
-  [open-craft/documentation (GitLab)](https://gitlab.com/opencraft/documentation/public/-/blob/master/tutorials/howtos/aws/AWS_terraform_deployment_tutorial.md).
-- Traducción al español y adaptación: este repositorio.
+
