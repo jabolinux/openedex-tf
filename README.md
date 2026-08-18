@@ -9,7 +9,7 @@ y tutorial completo en **español**.
 > (licencia **GPL-3.0**, ver [`LICENSE`](./LICENSE)). Aquí se incluye una copia de sus
 > módulos y el [tutorial interno de despliegue AWS](https://gitlab.com/opencraft/documentation/public/-/blob/master/tutorials/howtos/aws/AWS_terraform_deployment_tutorial.md)
 > Adaptado para usar los modulos de este mismo repositorio y docuemntado al español por Jaime Alfredo Bonilla Perez https://www.linkedin.com/in/ee-arch-ml/
-> paara Tekyrios SAS
+> paara Tekyrios SAS www.tekyrios.com 
 > 
 
 ## Qué incluye
