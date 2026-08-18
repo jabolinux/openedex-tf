@@ -1,0 +1,29 @@
+# Elasticsearch
+
+AWS ElasticSearch Service, it's configured to allow full access but only from the specified AWS 
+security group (should be supplied as Input), which should normally be specified as the security
+group for the OpenedX instance.
+
+## Input
+
+- `customer_name`: the customer's name, this variable is used for resource naming
+- `environment`: `prod` for example, this variable is used for resource naming
+- `edxapp_security_group_id`: and AWS security group id, It should be the one configured for your OpenedX instance.
+- `elasticsearch_version`: defaults to `1.5`
+- `elasticsearch_instance_type`: defaults to `t2.small.elasticsearch`
+- `zone_awareness_enabled`: Indicates whether zone awareness is enabled in the ES domain. Defaults to `true`
+- `availability_zone_count`: Used if `zone_awareness_enabled` is `true`, sets the number of Availability Zones
+  to be used. Defaults to `2`
+- `dedicated_master_enabled`: Indicates whether dedicated master nodes are enabled for the ES cluster. Defaults to `true`
+- `extra_security_group_ids`: List of Security Group IDs to add to the ES instance
+- `instance_count`: Number of instances in the ES cluster. Defaults to `2`
+- `specific_subnet_ids`: List of VPC subnet IDs to used when using multiple Availability Zones. If not specified, uses all available zones
+- `specific_vpc_id`: An optional VPC ID. If not specified, the default one is used.
+- `specific_domain_name`: An optional domain name.
+- `ebs_volume_type`: Type of EBS volumes attached to data nodes. Defaults to "gp2".
+- `ebs_volume_size`: Size of EBS volumes attached to data nodes (in GiB). Defaults to 10.
+- `ebs_iops`: Baseline input/output (I/O) performance of EBS volumes attached to data nodes. Applicable only if `ebs_volume_type` is set to "gp3". Defaults to 3000.
+
+## Output
+
+- `elasticsearch`: to be set in the `ELASTICSEARCH_HOST` variable (without the `https`) part

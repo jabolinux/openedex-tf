@@ -1,0 +1,127 @@
+variable "customer_name" {}
+variable "environment" {}
+variable "analytics_image_id" {}
+variable "analytics_instance_type" {}
+variable "analytics_key_pair_name" {}
+variable "hosted_zone_domain" {}
+variable "number_of_instances" {
+  default = 1
+}
+variable "instance_iteration" {
+  default = 1
+}
+variable "instance_ebs_volume_type" {
+  description = "Type of EBS volumes attached to the EC2 instance."
+  default     = "gp2"
+}
+variable "instance_ebs_volume_size" {
+  description = "Size of EBS volumes attached to the EC2 instance (in GiB)."
+  default     = 50
+}
+variable "instance_ebs_iops" {
+  description = "Baseline input/output (I/O) performance of EBS volumes attached to the EC2 instance. Applicable only if `instance_ebs_volume_type` is set to \"gp3\"."
+  default     = 3000
+}
+variable "elasticsearch_instance_type" {
+  default     = "t2.small.elasticsearch"
+  description = "Instance type of ElasticSearch data nodes."
+}
+variable "elasticsearch_ebs_volume_type" {
+  description = "Type of EBS volumes attached to data nodes."
+  default     = "gp2"
+}
+variable "elasticsearch_ebs_volume_size" {
+  description = "Size of EBS volumes attached to data nodes (in GiB)."
+  default     = 10
+}
+variable "elasticsearch_ebs_iops" {
+  description = "Baseline input/output (I/O) performance of EBS volumes attached to data nodes. Applicable only if `elasticsearch_ebs_volume_type` is set to \"gp3\"."
+  default     = 3000
+}
+variable "lb_instance_indexes" {
+  default = [0]
+}
+
+variable "analytics_identifier" {
+  default = "edx-analytics"
+}
+
+variable "provision_role_description" {
+  default = "Terraform managed - Opencraft"
+}
+
+variable "emr_service_role_policy" {
+  # Deprecated service role, cf
+  # https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-managed-iam-policies.html
+  default = "arn:aws:iam::aws:policy/service-role/AmazonElasticMapReduceRole"
+
+  # Use for new deployments made after May 1 2020
+  # default = "arn:aws:iam::aws:policy/service-role/AmazonEMRServicePolicy_v2"
+}
+
+variable "emr_ec2_service_role_policy" {
+  # Deprecated service role, cf
+  # https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-managed-iam-policies.html
+  default = "arn:aws:iam::aws:policy/service-role/AmazonElasticMapReduceforEC2Role"
+
+  # No replacement service role was provided for V2.
+  # For new deployments made after May 1 2020, a new policy will need to be created which allows access to the required resources.
+}
+
+variable "emr_master_security_group_description" {
+  default = "Managed by Terraform"
+}
+
+variable "emr_slave_security_group_description" {
+  default = "Managed by Terraform"
+}
+
+variable "elasticsearch_version" {
+  default = "1.5"
+}
+
+variable "edxapp_rds_port" {
+  default = 3306
+}
+
+# these are gotten from the edX provisioning
+variable "director_security_group_id" {}
+variable "edxapp_s3_grade_bucket_id" {}
+variable "edxapp_s3_grade_bucket_arn" {}
+variable "edxapp_s3_grade_user_arn" {}
+
+variable "use_route53" {
+  description = "Allows disabling Route 53 setup when using external DNS."
+  type        = bool
+  default     = true
+}
+
+variable "extended_instance_name" {
+  description = "Allows naming analytics instances with a similar pattern that other resources use."
+  type        = bool
+  default     = false
+}
+
+variable "aws_vpc_id" {
+  description = "The ID of the AWS VPC that should contain all resources. If not specified, the default VPC is used."
+  type        = string
+  default     = ""
+}
+
+locals {
+  http_port = 80
+  https_port = 443
+  ssh_port = 22
+  any_port = 0
+  all_ports = -1
+  jenkins_port = 8080
+
+  maximum_port = 65535
+
+  tcp_protocol = "tcp"
+  udp_protocol = "udp"
+  icmp_protocol = "icmp"
+  any_protocol = "-1"
+
+  all_ips = ["0.0.0.0/0"]
+}
